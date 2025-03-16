@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Juego Álgebra Lineal</title>
+</head>
+<body>
+    
+    <div id="main-page" class="container">
+        <h1>Juego Álgebra Lineal</h1>
+        <button class="btn" onclick="navigateTo('muerte-subita')">Muerte Súbita</button>
+        <button class="btn" onclick="navigateTo('banco-preguntas')">Banco de Preguntas</button>
+        <button class="btn" onclick="navigateTo('con-tiempo')">Con Tiempo</button>
+        <div style="margin-top: 40px;">
+            <button class="btn btn-small" onclick="openModal('reglas-modal')">Reglas</button>
+            <button class="btn btn-small" onclick="openModal('puntaje-modal')">Puntaje</button>
+        </div>
+    </div>
+
+    <!-- Página de Muerte Súbita -->
+    <div id="muerte-subita" class="container" style="display: none;">
+        <h1>Muerte Súbita</h1>
+        <div class="score">Puntuación: <span id="muerte-subita-score">0</span></div>
+        <div id="muerte-subita-question" class="question-container"></div>
+        <button class="btn" onclick="navigateTo('main-page')">Volver al Inicio</button>
+    </div>
+
+    <!-- Página de Banco de Preguntas -->
+    <div id="banco-preguntas" class="container" style="display: none;">
+        <h1>Banco de Preguntas</h1>
+        <div class="score">Puntuación: <span id="banco-preguntas-score">0</span></div>
+        <div id="banco-preguntas-question" class="question-container"></div>
+        <button class="btn" onclick="navigateTo('main-page')">Volver al Inicio</button>
+    </div>
+
+    <!-- Página Con Tiempo -->
+    <div id="con-tiempo" class="container" style="display: none;">
+        <h1>Con Tiempo</h1>
+        <div class="timer">Tiempo: <span id="timer">60</span> segundos</div>
+        <div class="score">Puntuación: <span id="con-tiempo-score">0</span></div>
+        <div id="con-tiempo-question" class="question-container"></div>
+        <button class="btn" onclick="navigateTo('main-page')">Volver al Inicio</button>
+    </div>
+
+    <!-- Modal de Reglas -->
+    <div id="reglas-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reglas-modal')">&times;</span>
+            <h2>Reglas del Juego</h2>
+            <h3>Muerte Súbita</h3>
+            <p>Responde preguntas de álgebra lineal. Si fallas una pregunta, el juego termina.</p>
+            <h3>Banco de Preguntas</h3>
+            <p>Responde 5 preguntas aleatorias de álgebra lineal. Tu puntuación se basará en cuántas aciertas.</p>
+            <h3>Con Tiempo</h3>
+            <p>Tienes 60 segundos para responder cada pregunta. Si el tiempo se acaba, pasarás a la siguiente pregunta automáticamente.</p>
+        </div>
+    </div>
+
+    <!-- Modal de Puntaje -->
+    <div id="puntaje-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('puntaje-modal')">&times;</span>
+            <h2>Puntuaciones</h2>
+            <table>
+                <tr>
+                    <th>Modo</th>
+                    <th>Mejor Puntuación</th>
+                </tr>
+                <tr>
+                    <td>Muerte Súbita</td>
+                    <td id="best-score-muerte-subita">0</td>
+                </tr>
+                <tr>
+                    <td>Con Tiempo</td>
+                    <td id="best-score-con-tiempo">0</td>
+                </tr>
+                <tr>
+                    <td>Banco de Preguntas</td>
+                    <td id="best-score-banco-preguntas">0</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
