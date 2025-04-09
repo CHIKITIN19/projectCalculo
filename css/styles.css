@@ -1,5 +1,10 @@
 body {
     font-family: Arial, sans-serif;
+    background-image: url('../img/istockphoto-1395886334-612x612.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     background-color: #2a9d8f;
@@ -11,6 +16,85 @@ body {
     padding: 20px;
     text-align: center;
 }
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #222;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.5s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feedback {
+    margin-top: 15px;
+    font-size: 16px;
+    background: #f0f8ff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.correct-feedback {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect-feedback {
+    color: red;
+    font-weight: bold;
+}
+
+.confirm-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.next-button {
+    margin-left: 10px;
+    padding: 10px 20px;
+}
+
+.option-button.selected {
+    background-color: #d0eaff;
+}
+
+.option-button.correct {
+    background-color: #c8f7c5;
+}
+
+.option-button.incorrect {
+    background-color: #f7c5c5;
+}
+
+
+.option {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+.option:hover {
+    background-color: #f0f0f0;
+}
+
 h1 {
     margin-bottom: 30px;
 }
@@ -93,3 +177,153 @@ th, td {
     padding: 10px;
     text-align: center;
 }
+
+/* Estilo específico para los modales */
+#reglas-modal, #puntaje-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#reglas-modal .modal-content, #puntaje-modal .modal-content {
+    background-color: #2a9d8f;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#reglas-modal .close, #puntaje-modal .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: rgb(97, 247, 122);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative; /* Para asegurar que la 'X' se posicione dentro de este contenedor */
+}
+
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    font-size: 18px;
+    color: #444;
+}
+
+/* Estilos de cierre */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px; /* Ajuste de la posición */
+    font-size: 28px;
+    cursor: pointer;
+    color: #888;
+    z-index: 1050; /* Asegura que la 'X' se quede arriba del contenido del modal */
+}
+
+/* Animación para aparición del modal */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.return-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.return-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos específicos para modales */
+#informacion-modal .modal-content,
+#puntaje-modal .modal-content {
+    background-color: #2a9d8f; /* Asegura que el fondo de los modales sea consistente */
+    color: white;
+}
+
+#informacion-modal .close,
+#puntaje-modal .close {
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.matrix {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-family: monospace;
+    text-align: center;
+  }
+  
+  .matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    border: 1px solid black;
+  }
+  
+  .matrix:before {
+    left: -2px;
+    border-right: none;
+  }
+  
+  .matrix:after {
+    right: -2px;
+    border-left: none;
+  }
+  
+  .matrix-row {
+    display: block;
+  }
+  
+  .matrix-elem {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+  }
