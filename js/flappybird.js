@@ -23,6 +23,7 @@ let pipeWidth = 64;
 let pipeHeight = 512;
 let pipeX = boardWidth;
 let pipeY = 0;
+let pipeGap = boardHeight / 5; // Espacio reducido entre tubos (antes era /4)
 
 let topPipeImg;
 let bottomPipeImg;
@@ -74,7 +75,7 @@ function startGame() {
         bird.y = birdY;
 
         requestAnimationFrame(update);
-        pipeInterval = setInterval(placePipes, 1500);
+        pipeInterval = setInterval(placePipes, 1000); // Intervalo reducido a 1000ms (antes era 1500)
     }
 }
 
@@ -120,19 +121,19 @@ function update() {
     if (gameOver) {
         context.fillText("GAME OVER", 5, 90);
         clearInterval(pipeInterval);
-        setTimeout(redirectToMainIndex, 1000); // Cambiado a la nueva función
+        setTimeout(redirectToMainIndex, 1000);
     }
 }
 
 function redirectToMainIndex() {
-    window.location.href = "index.html"; // Redirige al index principal
+    window.location.href = "index.html";
 }
 
 function placePipes() {
     if (gameOver) return;
 
     let randomPipeY = pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2);
-    let openingSpace = board.height / 4;
+    let openingSpace = pipeGap; // Usamos la variable con el espacio reducido
 
     let topPipe = {
         img: topPipeImg,
@@ -160,12 +161,12 @@ function moveBird(e) {
         velocityY = -6;
 
         if (gameOver) {
-            redirectToMainIndex(); // Cambiado para redirigir al index principal
+            redirectToMainIndex();
         }
     }
 
     if (gameOver && (e.code === "Enter" || e.code === "KeyR")) {
-        redirectToMainIndex(); // Cambiado para redirigir al index principal
+        redirectToMainIndex();
     }
 }
 
