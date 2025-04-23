@@ -138,13 +138,16 @@ const feedbacks = {
         incorrect:"Explicación:La matriz P contiene en sus columnas los vectores propios de A.  Cada vector propio 𝑣𝑖 corresponde a un valor propio 𝜆𝑖, que va en la posición 𝑖 de la diagonal de D."
     },
     7:{
-
+        correct:"¡Correcto!",
+        incorrect:"Explicación:Para calcular el polinomio característico, se usa la fórmula det(A - λI) = 0. En este caso, al resolver el determinante de la matriz A - λI, se obtiene el polinomio característico λ^2-7λ+6."
     },
     8:{
-
+        correct:"¡Correcto!",
+        incorrect:"Explicación:El polinomio característico se obtiene al calcular el determinante de la matriz A - λI. En este caso, al resolver el determinante de la matriz A - λI, se obtiene el polinomio característico λ^2-9λ+18."
     },
     9:{
-
+        correct:"¡Correcto!",
+        incorrect:"Explicación:La ecuación característica de una matriz se obtiene al igualar el polinomio característico a cero. En este caso, la ecuación característica es λ^2-9λ+18=0."
     }
 
 };
