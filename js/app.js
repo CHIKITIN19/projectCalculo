@@ -1,55 +1,5 @@
 const questions = [
     {
-        question: "¿Qué es un espacio vectorial?",
-        options: [
-            "Un conjunto con operaciones de suma y multiplicación escalar",
-            "Un espacio tridimensional",
-            "Un conjunto de números reales",
-            "Un conjunto de matrices"
-        ],
-        correctAnswer: 0
-    },
-    {
-        question: "Si A es una matriz invertible, entonces det(A) es:",
-        options: [
-            "Siempre igual a 1",
-            "No igual a 0",
-            "Siempre positivo",
-            "Siempre negativo"
-        ],
-        correctAnswer: 1
-    },
-    {
-        question: "La dimensión de un espacio vectorial es:",
-        options: [
-            "El número de elementos en el espacio",
-            "El número de vectores en el espacio",
-            "El número de vectores en una base del espacio",
-            "Siempre igual a 3"
-        ],
-        correctAnswer: 2
-    },
-    {
-        question: "¿Qué significa que dos vectores sean linealmente independientes?",
-        options: [
-            "Que son ortogonales",
-            "Que ninguno puede expresarse como múltiplo escalar del otro",
-            "Que tienen la misma magnitud",
-            "Que apuntan en la misma dirección"
-        ],
-        correctAnswer: 1
-    },
-    {
-        question: "¿Cuáles son los valores propios del polinomio característico −λ³ − 3λ² − 2λ?",
-        options: [
-            "0, -1 y -2",
-            "1, 2 y 3",
-            "0, 1 y 2",
-            "-1, -2 y -3"
-        ],
-        correctAnswer: 0
-    },
-    {
         question: "Determine la matriz <strong>P</strong> formada por los vectores propios en el orden de la matriz <strong>A</strong>:<br><br>" +
               "<div style='text-align:center; font-family: monospace;'>A = ⎛ 2&nbsp;&nbsp;3&nbsp;&nbsp;2 ⎞<br>" +
               "&nbsp;&nbsp;&nbsp;&nbsp;⎜ -2&nbsp;-3&nbsp;-2 ⎟<br>" +
@@ -61,41 +11,151 @@ const questions = [
         `<div style="font-family: monospace;">⎛ 1&nbsp;0&nbsp;1 ⎞<br>⎜ -1&nbsp;1&nbsp;0 ⎟<br>⎝ 0&nbsp;-1&nbsp;1 ⎠</div>`
     ],
     correctAnswer: 0
+},
+{
+    question: "¿Qué es un valor propio (autovalor) de una matriz A?",
+
+    options: [
+        "Un vector que satisface Av =0",
+        "Un escalar λ Av=λv para algún vector no nulo v",
+        "La traza de la matriz A.",
+        "El determinante de A."
+    ],
+    correctAnswer: 1
+},
+{
+    question: "La multiplicidad algebraica de un valor propio:",
+    options: [
+        "Es el número de vectores propios linealmente independientes asociados a él.",
+        "Es el número de veces que aparece como raíz del polinomio característico.",
+        "Siempre es igual a la multiplicidad geométrica.",
+        "Es la dimensión del espacio nulo de A."
+    ],
+    correctAnswer: 1
+},
+{
+    question: "Si una matriz A es diagonalizable:",
+
+    options: [
+        "Todos sus valores propios son distintos.",
+        "Tiene exactamente n valores propios (para una matriz n×n).",
+        "La multiplicidad geométrica de cada valor propio es igual a su multiplicidad algebraica.",
+        "Su determinante es cero."
+    ],
+    correctAnswer: 2
+},
+{
+    question: "Si A es una matriz simétrica real, ¿qué propiedad especial tienen sus vectores propios?",
+    options: [
+        "Son siempre ortogonales.",
+        "Todos corresponden al mismo valor propio.",
+        "No existen.",
+        "Son siempre paralelos."
+    ],
+    correctAnswer: 0
+},
+{
+    question: " ¿Qué significa que una matriz A sea diagonalizable? ",
+
+    options: [
+        "Que puede escribirse como A = PDP^-1, donde D es diagonal.",
+        "Que todos sus elementos fuera de la diagonal son cero.",
+        "Que su determinante es igual a su traza.",
+        "Que es invertible."
+    ],
+    correctAnswer: 0
+},
+{
+    question: "La matriz P en la diagonalización A = PDP^-1 está formada por:",
+    options: [
+        "Los valores propios de A  en su diagonal.",
+        "Los vectores propios de  A como columnas.",
+        "Las filas de A escaladas.",
+        " La inversa de los vectores propios de A."
+    ],
+    correctAnswer: 1
+},
+{
+    question: '<img src="../img/ejercicio1.png" alt="Pregunta sobre matriz">',
+    options: [
+        "λ^2-7λ+6",
+        "λ^2-7λ+7",
+        "λ^2-8λ+6",
+        "λ^2-7λ+5."
+    ],
+    correctAnswer: 0
+},
+{
+    question: '<img src="../img/ejericio2.png" alt="Pregunta sobre matriz">',
+    options: [
+        "λ^2-9λ+18",
+        "λ^2-9λ+12",
+        "λ^2-9λ-18",
+        "λ^2-7λ+54."
+    ],
+    correctAnswer: 0
+},
+{
+    question: "La ecuacion caracteristica de la pregunta anterior es la siguiente:",
+    options: [
+        "λ^2-9λ+18=0",
+        "λ^2-9λ+12=0",
+        "λ^2-9λ-18=0",
+        "λ^2-7λ+54=0"
+    ],
+    correctAnswer: 0
 }
-    
-    
 ];
 const feedbacks = {
+
     0: {
-        correct: "¡Correcto! Un espacio vectorial debe tener suma de vectores y multiplicación por escalar. <br> Paso a paso:<br>1. Debe cumplir 8 axiomas.<br>2. Entre ellos, asociatividad y existencia del neutro.",
-        incorrect: "Un espacio vectorial no es solo un conjunto. <br> Paso a paso:<br>1. Requiere operaciones válidas.<br>2. Debe satisfacer axiomas como la distributividad y existencia de inverso."
-    },
-    1: {
-        correct: "¡Correcto! Una matriz invertible tiene determinante distinto de 0. <br> Paso a paso:<br>1. Si det(A) = 0, no hay inversa.<br>2. Por lo tanto, det(A) ≠ 0.",
-        incorrect: "Error. Una matriz invertible debe tener determinante diferente de 0. <br> Paso a paso:<br>1. Calcula det(A).<br>2. Si es 0, no se puede invertir."
-    },
-    2: {
-        correct: "¡Correcto! La dimensión es la cantidad de vectores en una base. <br> Paso a paso:<br>1. Encuentra una base del espacio.<br>2. Cuenta sus vectores.",
-        incorrect: "Incorrecto. La dimensión se refiere a la cantidad de vectores en una base. <br> Paso a paso:<br>1. La base debe ser LI.<br>2. Su número define la dimensión."
-    },
-    3: {
-        correct: "¡Correcto! Si no puedes escribir un vector como múltiplo del otro, son linealmente independientes. <br> Paso a paso:<br>1. Intenta expresar uno como combinación del otro.<br>2. Si no puedes, son LI.",
-        incorrect: "Incorrecto. La independencia lineal no tiene que ver con magnitudes. <br> Paso a paso:<br>1. Verifica si uno es múltiplo del otro.<br>2. Si lo es, son dependientes."
-    },
-    4: {
-        correct: "¡Correcto! Los valores propios son las raíces del polinomio característico. <br> Paso a paso:<br>1. Factoriza: −λ³ − 3λ² − 2λ = −λ(λ + 1)(λ + 2)<br>2. Las raíces son: 0, -1 y -2.",
-        incorrect: "Incorrecto. Para hallar los valores propios, debes factorizar el polinomio. <br> Paso a paso:<br>1. Saca factor común: −λ(λ² + 3λ + 2)<br>2. Factoriza: (λ + 1)(λ + 2)<br>3. Valores propios: 0, -1 y -2."
-    },
-    5: {
-        correct: "¡Correcto! La matriz P está formada por los vectores propios como columnas, en el orden correspondiente a los valores propios de A. <br><br>" +
-             "Paso a paso:<br>1. Encuentra los valores propios de A.<br>2. Calcula los vectores propios para cada valor.<br>3. Forma la matriz P con estos vectores como columnas.",
+        correct: "¡Correcto!",
     incorrect: "Incorrecto. Para formar la matriz P necesitas calcular los vectores propios de la matriz A y colocarlos como columnas. <br><br>" +
                "Paso a paso:<br>1. Halla los valores propios.<br>2. Para cada valor propio, encuentra su vector propio.<br>3. Forma la matriz P usando esos vectores como columnas."
-    }
-    
-    
-};
+    },
+    1:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:Por definición, un valor propio 𝜆 de una matriz A es un escalar tal que existe un vector no nulo 𝑣 (llamado vector propio) que cumple:𝐴𝑣=𝜆𝑣 Esto significa que la transformación lineal representada por A no cambia la dirección del vector v, solo lo escala."
+    },
+    2:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:La multiplicidad algebraica de un valor propio es el número de veces que λ aparece como raíz del polinomio característico: 𝜒𝐴(𝜆)=det(𝐴−𝜆𝐼) Esto es un concepto puramente algebraico y se relaciona con la factorización del polinomio."
+    },
+    3:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación: Una matriz A es diagonalizable si tiene una base de vectores propios, lo que ocurre si y solo si, para cada valor propio λ, su multiplicidad geométrica (dimensión del espacio nulo de 𝐴−𝜆𝐼) es igual a su multiplicidad algebraica. Esto garantiza que hay suficientes vectores propios para construir la matriz P tal que A = PDP^-1"
+    },
+    4:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:(Teorema espectral: los vectores propios de matrices simétricas reales son ortogonales.) Por el teorema espectral, una matriz simétrica real tiene: Todos sus valores propios reales. Un conjunto de vectores propios ortogonales (incluso ortonormales si se normalizan). Esto permite que matrices simétricas se diagonalicen mediante matrices ortogonales."
+    },
+    5:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:Esa es la definición directa de diagonalización por semejanza: existe una matriz P de vectores propios y una matriz D diagonal con los valores propios en la diagonal, tal que: A = PDP^-1"
+    },
+    6:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:La matriz P contiene en sus columnas los vectores propios de A.  Cada vector propio 𝑣𝑖 corresponde a un valor propio 𝜆𝑖, que va en la posición 𝑖 de la diagonal de D."
+    },
+    7:{
 
+    },
+    8:{
+
+    },
+    9:{
+
+    }
+
+};
+function renderMath() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.typesetPromise().catch(err => console.log('MathJax typeset error:', err));
+    }
+  }
+  
+  // Llama a esta función después de cargar cada pregunta
+  renderMath();
 
 let currentScores = {
     'muerte-subita': 0,
@@ -155,10 +215,7 @@ function navigateTo(page) {
     showQuestion(page);
 }
 
-function getRandomQuestions(count) {
-    const shuffled = [...questions].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-}
+
 
 function showQuestion(mode) {
     const question = gameQuestions[currentQuestionIndex];
@@ -229,28 +286,33 @@ function continueGame(mode) {
 function endGame(mode, win) {
     clearInterval(timer);
 
-    const finalAudio = new Audio(win ? 'sounds/respuesta_correcta.mp3' : 'sounds/spongebob-fail.mp3');
-    finalAudio.play().catch(console.warn);
+    let title, message;
+    if (win) {
+        title = "🎉 ¡Felicidades!";
+        message = `Has completado el modo ${mode === 'muerte-subita' ? 'Muerte Súbita' : mode} con ${currentScores[mode]} puntos`;
+    } else {
+        title = "😢 Fin del juego";
+        message = mode === "muerte-subita" 
+            ? "Fallaste una pregunta en modo Muerte Súbita. ¡Inténtalo de nuevo!" 
+            : "Juego terminado";
+    }
 
-    finalAudio.onended = () => {
-        let title = "", message = "";
+    // Actualizar mejores puntuaciones
+    if (currentScores[mode] > bestScores[mode]) {
+        bestScores[mode] = currentScores[mode];
+        localStorage.setItem(`best-score-${mode}`, bestScores[mode]);
+        document.getElementById(`best-score-${mode}`).textContent = bestScores[mode];
+    }
 
-        if (win) {
-            title = "🎉 ¡Felicidades!";
-            message = "Has completado todas las preguntas correctamente. ¡Buen trabajo!";
-        } else {
-            title = "😢 Fin del juego";
-            message = mode === "muerte-subita"
-                ? "Fallaste una pregunta en modo muerte súbita. ¡Intenta de nuevo!"
-                : "Has respondido incorrectamente. ¡Sigue practicando!";
-        }
+    // Mostrar modal de fin de juego
+    document.getElementById("end-game-title").textContent = title;
+    document.getElementById("end-game-message").textContent = message;
+    openModal('end-game-modal');
 
-        document.getElementById("end-game-title").textContent = title;
-        document.getElementById("end-game-message").innerHTML = message;
-        openModal('end-game-modal');
-
-        updateBestScore(mode);
-    };
+    // Reiniciar variables del juego
+    currentScores[mode] = 0;
+    currentQuestionIndex = 0;
+    selectedAnswer = null;
 }
 
 function updateBestScore(mode) {
@@ -294,36 +356,41 @@ function startTimer() {
         }
     }, 1000);
 }
-function confirmAnswer(mode) {
-    const question = gameQuestions[currentQuestionIndex];
-    const correctAnswer = question.correctAnswer;
+
+
+function getExplanation(questionIndex) {
+    const question = gameQuestions[questionIndex];
+    const feedback = feedbacks[questionIndex];
+    if (!feedback) return "";  // Si no hay retroalimentación, retorna vacío
+
+    // Obtener el resultado del feedbackDiv
+    const mode = currentMode; // Asumiendo que currentMode es global
     const feedbackDiv = document.getElementById(`${mode}-feedback`);
+    const result = feedbackDiv ? feedbackDiv.dataset.result : null;
 
-    if (selectedAnswer === correctAnswer) {
-        feedbackDiv.dataset.result = 'correct';
+    if (result === 'correct') {
+        return feedback.correct || "Correct"; // Mostrar feedback correcto o "Correct" si no hay
     } else {
-        feedbackDiv.dataset.result = 'incorrect';
+        return feedback.incorrect || "Incorrect"; // Mostrar feedback incorrecto o "Incorrect" si no hay
     }
-
-    // Deshabilita botones
-    document.querySelectorAll(`#${mode}-question .option-button`).forEach(btn => btn.disabled = true);
-    document.getElementById(`${mode}-confirm`).disabled = true;
-
-    // Muestra botón para ver la retroalimentación
-    document.getElementById(`${mode}-feedback-btn`).style.display = 'inline-block';
 }
+
 function showFeedback(mode) {
     const question = gameQuestions[currentQuestionIndex];
     const correctAnswer = question.correctAnswer;
     const feedbackDiv = document.getElementById(`${mode}-feedback`);
-    const result = feedbackDiv.dataset.result;
+    
+    // Asegurarnos de obtener el resultado actualizado
+    const isCorrect = selectedAnswer === correctAnswer;
+    const result = isCorrect ? 'correct' : 'incorrect';
+    feedbackDiv.dataset.result = result; // Actualizar el dataset
 
     const correctAudio = new Audio('sounds/respuesta_correcta.mp3');
     const incorrectAudio = new Audio('sounds/spongebob-fail.mp3');
 
     const explanation = getExplanation(currentQuestionIndex);
 
-    if (result === 'correct') {
+    if (isCorrect) {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         currentScores[mode]++;
         document.getElementById(`${mode}-score`).textContent = currentScores[mode];
@@ -340,10 +407,10 @@ function showFeedback(mode) {
         }
     }
 
-    // Oculta botón retroalimentación y muestra botón siguiente
     document.getElementById(`${mode}-feedback-btn`).style.display = 'none';
     document.getElementById(`${mode}-next`).style.display = 'inline-block';
 }
+
 
 function showSadEmoji() {
     const emojiDiv = document.createElement('div');
@@ -420,15 +487,6 @@ style.innerHTML = `
 }`;
 document.head.appendChild(style);
 
-function getExplanation(index) {
-    const explanations = [
-        "Un espacio vectorial tiene dos operaciones: suma de vectores y multiplicación por un escalar que cumplen ciertos axiomas.",
-        "Una matriz es invertible si su determinante es diferente de cero. Por eso det(A) ≠ 0.",
-        "La dimensión es el número de vectores linealmente independientes en una base del espacio.",
-        "Dos vectores son linealmente independientes si no puedes obtener uno a partir del otro mediante un escalar."
-    ];
-    return explanations[index] || "Consulta tu profesor o material de estudio para más detalles.";
-}
 
 function confirmAnswer(mode) {
     const question = gameQuestions[currentQuestionIndex];
@@ -439,43 +497,72 @@ function confirmAnswer(mode) {
     const correctAudio = new Audio('sounds/respuesta_correcta.mp3');
     const incorrectAudio = new Audio('sounds/spongebob-fail.mp3');
 
-    // Bloquear opciones
+    // Verificar si se seleccionó una opción
+    if (selectedAnswer === null) {
+        alert("Por favor selecciona una opción antes de confirmar.");
+        return;
+    }
+
+    // Bloquear todas las opciones
     document.querySelectorAll(`#${mode}-question .option-button`).forEach((btn, idx) => {
         btn.disabled = true;
         if (idx === correctAnswer) btn.classList.add('correct');
         if (idx === selectedAnswer && selectedAnswer !== correctAnswer) btn.classList.add('incorrect');
     });
 
-    // Deshabilitar confirmar
+    // Deshabilitar botón de confirmar
     confirmBtn.disabled = true;
 
-    const explanation = getExplanation(currentQuestionIndex);
-
     if (selectedAnswer === correctAnswer) {
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        // Respuesta correcta
         currentScores[mode]++;
         document.getElementById(`${mode}-score`).textContent = currentScores[mode];
+        feedbackDiv.innerHTML = `
+            <div class="correct-feedback">
+                <strong>✅ ¡Correcto!</strong>
+                <p>${feedbacks[currentQuestionIndex]?.correct || 'Respuesta correcta.'}</p>
+            </div>
+        `;
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         correctAudio.play().catch(console.warn);
-        feedbackDiv.innerHTML = `<p class="correct-feedback">✅ ¡Correcto!<br>${explanation}</p>`;
+        
+        // Mostrar botón para continuar
+        nextBtn.style.display = 'inline-block';
     } else {
+        // Respuesta incorrecta
+        const feedback = feedbacks[currentQuestionIndex]?.incorrect || 'Respuesta incorrecta.';
+        feedbackDiv.innerHTML = `
+            <div class="incorrect-feedback">
+                <strong>❌ Incorrecto</strong>
+                <p>${feedback}</p>
+                <p>La respuesta correcta era: ${question.options[correctAnswer]}</p>
+            </div>
+        `;
         showSadEmoji();
         incorrectAudio.play().catch(console.warn);
-        feedbackDiv.innerHTML = `<p class="incorrect-feedback">❌ Incorrecto.<br>${explanation}</p>`;
-
+        
+        // En modo muerte súbita, mostrar feedback y luego terminar
         if (mode === 'muerte-subita') {
-            incorrectAudio.onended = () => endGame(mode, false);
-            return;
+            setTimeout(() => {
+                endGame(mode, false);
+            }, 6000); // 3 segundos para leer el feedback
+        } else {
+            // En otros modos, mostrar botón para continuar
+            nextBtn.style.display = 'inline-block';
         }
     }
-
-    // Mostrar botón "Ver explicación y continuar" (si no es muerte súbita con error)
-    nextBtn.style.display = 'inline-block';
 }
+
+
+
+
+
+
 function reiniciarJuego() {
     navigateTo(currentMode); // Vuelve a iniciar el modo actual
 }
 function getRandomQuestions(count) {
-    const shuffled = [...questions].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, Math.min(count, questions.length));
+    return questions.slice(0, count); // Devuelve las primeras 'count' preguntas, en vez de aleatorias.
 }
+
 
