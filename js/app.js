@@ -76,7 +76,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio1.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio1.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "λ^2-7λ+6",
         "λ^2-7λ+7",
@@ -86,7 +86,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejericio2.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejericio2.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "λ^2-9λ+18",
         "λ^2-9λ+12",
@@ -106,7 +106,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio3.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio3.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "1",
         "2",
@@ -116,7 +116,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio4.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio4.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "Tener todos sus elementos diagonales distintos de cero.",
         "Poseer n vectores propios linealmente independientes (para una matriz n×n).",
@@ -126,7 +126,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio5.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio5.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "λ=1, λ=2,  λ=3",
         "λ=-1,  λ=2,  λ=-3",
@@ -136,7 +136,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio6.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio6.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "1, porque solo hay un vector propio LI.",
         "2, porque el polinomio característico tiene (λ=1)^2.",
@@ -146,7 +146,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio7.png" alt="Pregunta sobre matriz">',
+    question: '<img src="../img/ejercicio7.png" alt="Pregunta sobre matriz" width="330" height="200">',
     options: [
         "1",
         "2",
@@ -322,7 +322,7 @@ function showQuestion(mode) {
     <div id="${mode}-feedback" class="feedback"></div>
 <button id="${mode}-confirm" class="confirm-button" onclick="confirmAnswer('${mode}')" disabled>Confirmar</button>
 <button id="${mode}-feedback-btn" class="feedback-button" style="display: none;" onclick="showFeedback('${mode}')">Ver retroalimentación</button>
-<button id="${mode}-next" class="next-button" onclick="nextQuestion('${mode}')" style="display: none;">Siguiente</button>
+<button id="${mode}-next" class="next-button" onclick="${mode === 'banco-preguntas' ? `continueGame('${mode}')` : `nextQuestion('${mode}')`}" style="display: none;">Siguiente</button>
 
 `;
 
@@ -357,13 +357,24 @@ function nextQuestion(mode) {
         showQuestion(mode);
         selectedAnswer = null;
     }
+    
 }
-
 
 
 function continueGame(mode) {
     currentQuestionIndex++;
+
     if (currentQuestionIndex >= gameQuestions.length) {
+        // Deshabilita el botón "Continuar" si es modo banco
+        if (mode === 'banco-preguntas') {
+            const continueBtn = document.getElementById(`${mode}-next`);
+            if (continueBtn) {
+                continueBtn.disabled = true;
+                continueBtn.textContent = "Fin del banco de preguntas";
+                continueBtn.style.backgroundColor = "#ccc"; // opcional: visualmente desactivado
+                continueBtn.style.cursor = "not-allowed";
+            }
+        }
         endGame(mode, true);
     } else {
         showQuestion(mode);
@@ -521,11 +532,13 @@ function showSadEmoji() {
 }
 
 const tips = [
-    "📌 Recuerda: para sumar matrices deben tener la misma dimensión.",
-    "💡 Para que una matriz sea invertible, su determinante debe ser ≠ 0.",
-    "🎯 Un conjunto de vectores forma una base si son LI y generan el espacio.",
-    "🧠 El producto escalar es útil para verificar ortogonalidad.",
-    "📘 Usa el método de Gauss-Jordan para encontrar la inversa de una matriz."
+    "🧮 La ecuación característica se obtiene de |A - λI| = 0, donde A es tu matriz y λ una variable escalar.",
+    "📐 El polinomio característico es un polinomio en λ; sus raíces son los **valores propios** (eigenvalores).",
+    "💥 Si el determinante |A - λI| = 0 tiene una raíz λ₀, entonces existe un vector no nulo v tal que (A - λ₀I)v = 0.",
+    "🔍 Para cada valor propio λ, encuentra los **vectores propios** resolviendo (A - λI)v = 0 (un sistema homogéneo).",
+    "🔄 Una matriz **es diagonalizable** si tiene **n** vectores propios linealmente independientes (donde n es el tamaño de la matriz).",
+    "📊 Si todos los valores propios son distintos (sin multiplicidad algebraica mayor que 1), la matriz siempre es diagonalizable.",
+    "📘 Para diagonalizar: A = PDP⁻¹, donde D es la matriz diagonal con los valores propios y P tiene los vectores propios como columnas."
 ];
 
 function showToast(message) {
@@ -642,11 +655,6 @@ function confirmAnswer(mode) {
         }
     }
 }
-
-
-
-
-
 
 function reiniciarJuego() {
     navigateTo(currentMode); // Vuelve a iniciar el modo actual
