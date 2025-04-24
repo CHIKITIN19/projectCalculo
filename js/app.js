@@ -104,6 +104,66 @@ const questions = [
         "λ^2-7λ+54=0"
     ],
     correctAnswer: 0
+},
+{
+    question: '<img src="../img/ejercicio3.png" alt="Pregunta sobre matriz">',
+    options: [
+        "1",
+        "2",
+        "3",
+        "No se puede determinar."
+    ],
+    correctAnswer: 1
+},
+{
+    question: '<img src="../img/ejercicio4.png" alt="Pregunta sobre matriz">',
+    options: [
+        "Tener todos sus elementos diagonales distintos de cero.",
+        "Poseer n vectores propios linealmente independientes (para una matriz n×n).",
+        "Ser simétrica.",
+        "Tener determinante igual a cero."
+    ],
+    correctAnswer: 1
+},
+{
+    question: '<img src="../img/ejercicio5.png" alt="Pregunta sobre matriz">',
+    options: [
+        "λ=1, λ=2,  λ=3",
+        "λ=-1,  λ=2,  λ=-3",
+        "λ=0,  λ=2,  λ=4",
+        "λ=5,  λ=1,  λ=2"
+    ],
+    correctAnswer: 0
+},
+{
+    question: '<img src="../img/ejercicio6.png" alt="Pregunta sobre matriz">',
+    options: [
+        "1, porque solo hay un vector propio LI.",
+        "2, porque el polinomio característico tiene (λ=1)^2.",
+        "0, porque no hay vectores propios.",
+        "3, porque la matriz es diagonalizable."
+    ],
+    correctAnswer: 0
+},
+{
+    question: '<img src="../img/ejercicio7.png" alt="Pregunta sobre matriz">',
+    options: [
+        "1",
+        "2",
+        "3",
+        "6"
+    ],
+    correctAnswer: 1
+},
+{
+    question: "¿Qué representa la multiplicidad geométrica de un valor propio?",
+    options: [
+        "El número de veces que aparece en el polinomio característico.",
+        "La dimensión del espacio propio asociado.",
+        "La traza de la matriz.",
+        "ninguna de las anteriores"
+    ],
+    correctAnswer: 1
 }
 ];
 const feedbacks = {
@@ -148,7 +208,34 @@ const feedbacks = {
     9:{
         correct:"¡Correcto!",
         incorrect:"Explicación:La ecuación característica de una matriz se obtiene al igualar el polinomio característico a cero. En este caso, la ecuación característica es λ^2-9λ+18=0."
+    },
+    10:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación: det(B−λI)=(5−λ)(λ2−6λ+5), Raíces: λ=5 (doble) y λ=1. (λ=5 aparece dos veces en el polinomio característico)."
+    },
+    11:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:Se requieren 3 vectores LI"
+    },
+    12:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:Calculados previamente: raíces del polinomio característico −λ ^3+6λ ^2−11λ+6=)."
+    },
+    13:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:El espacio propio para λ=1,  está generado por  (−1 1 2), por lo que mg=1."
+    },
+    14:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:El polinomio característico es −(λ−3) ^2 (λ−5), por lo que λ=3 aparece dos veces (ma=2)."
+    },
+    15:{
+        correct:"¡Correcto!",
+        incorrect:"Explicación:explicacion La multiplicidad geométrica (mg) es el número de vectores propios linealmente independientes asociados a un valor propio. Se calcula como: mg=n−rango(A−λI)"
     }
+    
+
+
 
 };
 function renderMath() {
