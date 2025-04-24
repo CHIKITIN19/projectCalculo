@@ -76,7 +76,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio1.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio1.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "λ^2-7λ+6",
         "λ^2-7λ+7",
@@ -86,7 +86,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejericio2.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejericio2.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "λ^2-9λ+18",
         "λ^2-9λ+12",
@@ -106,7 +106,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio3.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio3.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "1",
         "2",
@@ -116,7 +116,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio4.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio4.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "Tener todos sus elementos diagonales distintos de cero.",
         "Poseer n vectores propios linealmente independientes (para una matriz n×n).",
@@ -126,7 +126,7 @@ const questions = [
     correctAnswer: 1
 },
 {
-    question: '<img src="../img/ejercicio5.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio5.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "λ=1, λ=2,  λ=3",
         "λ=-1,  λ=2,  λ=-3",
@@ -136,7 +136,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio6.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio6.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "1, porque solo hay un vector propio LI.",
         "2, porque el polinomio característico tiene (λ=1)^2.",
@@ -146,7 +146,7 @@ const questions = [
     correctAnswer: 0
 },
 {
-    question: '<img src="../img/ejercicio7.png" alt="Pregunta sobre matriz" width="330" height="200">',
+    question: '<img src="../img/ejercicio7.png" alt="Pregunta sobre matriz" width="300" height="200">',
     options: [
         "1",
         "2",
