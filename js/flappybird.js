@@ -39,15 +39,14 @@ let gameStarted = false;
 let pipeInterval;
 
 function initGame() {
-    // Ajustar dimensiones según el dispositivo
     const isMobile = window.innerWidth <= 768;
     
     boardWidth = isMobile ? window.innerWidth : 360;
     boardHeight = isMobile ? window.innerHeight : 640;
     
     // bird
-    birdWidth = boardWidth * 0.094; // ~34px en 360px
-    birdHeight = boardWidth * 0.066; // ~24px en 360px
+    birdWidth = boardWidth * 0.094;
+    birdHeight = boardWidth * 0.066;
     birdX = boardWidth / 8;
     birdY = boardHeight / 2;
     
@@ -59,30 +58,87 @@ function initGame() {
     };
     
     // pipes
-    pipeWidth = boardWidth * 0.177; // ~64px en 360px
-    pipeHeight = boardHeight * 0.8; // ~512px en 640px
+    pipeWidth = boardWidth * 0.177;
+    pipeHeight = boardHeight * 0.8;
     pipeX = boardWidth;
-    pipeGap = boardHeight / (isMobile ? 4 : 5); // Más espacio en móviles
+    pipeGap = boardHeight / (isMobile ? 4 : 5);
     
     // physics
-    velocityX = isMobile ? -3 : -2; // Más rápido en móviles
-    gravity = isMobile ? 0.5 : 0.4; // Gravedad ajustada
+    velocityX = isMobile ? -3 : -2;
+    gravity = isMobile ? 0.5 : 0.4;
     
     // Configurar canvas
     board.width = boardWidth;
     board.height = boardHeight;
 }
 
-window.onload = function () {
+function showMathModal() {
+    const modal = document.getElementById('mathModal');
+    modal.style.display = 'block';
+    
+    // Configurar el botón de ejercicios
+    const exercisesBtn = document.getElementById('mathExercisesBtn');
+    exercisesBtn.onclick = function() {
+        window.location.href = "index2.html";
+    };
+    
+    // Permitir cerrar el modal haciendo click fuera del contenido
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+}
+
+function endGame() {
+    if (gameOver) return; // Evitar múltiples llamadas
+    
+    gameOver = true;
+    clearInterval(pipeInterval);
+    
+    // Mostrar "GAME OVER" en el canvas
+    context.fillStyle = "white";
+    context.font = `${boardWidth * 0.125}px sans-serif`;
+    context.fillText("GAME OVER", boardWidth * 0.014, boardHeight * 0.14);
+    
+    // Mostrar el modal después de un breve retraso
+    setTimeout(showMathModal, 800);
+}
+
+function resetGame() {
+    gameOver = false;
+    gameStarted = false;
+    pipeArray = [];
+    score = 0;
+    velocityY = 0;
+    bird.y = birdY;
+    
+    // Limpiar el canvas
+    context.clearRect(0, 0, board.width, board.height);
+    
+    // Volver a dibujar el pájaro en posición inicial
+    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+}
+
+window.onload = function() {
     board = document.getElementById("board");
     context = board.getContext("2d");
     
+    // Añadir clase pc-mode si es PC
+    if (window.innerWidth > 768) {
+        document.body.classList.add('pc-mode');
+        document.getElementById('startScreen').classList.add('pc-mode');
+    }
+    
     initGame();
     
+    // Cargar imágenes
     birdImg = new Image();
     birdImg.src = "../img/flappybird.png";
-    birdImg.onload = function () {
-        context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+    birdImg.onload = function() {
+        if (!gameStarted) {
+            context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+        }
     };
     
     topPipeImg = new Image();
@@ -91,28 +147,42 @@ window.onload = function () {
     bottomPipeImg = new Image();
     bottomPipeImg.src = "../img/bottompipe.png";
     
-    // Controles
-    document.addEventListener("keydown", moveBird);
+    // Controles del juego
+    document.addEventListener("keydown", function(e) {
+        if (gameOver) return;
+        
+        if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyX") {
+            velocityY = -6;
+        }
+    });
     
-    // Control táctil para móviles
     document.addEventListener("touchstart", function(e) {
         e.preventDefault();
-        moveBird({code: "Space"});
+        if (!gameOver) {
+            velocityY = -6;
+        }
     });
     
     document.addEventListener("click", function(e) {
         if (gameStarted && !gameOver) {
-            moveBird({code: "Space"});
+            velocityY = -6;
         }
     });
     
-    document.getElementById("startButton").addEventListener("click", function () {
+    // Botón de inicio
+    document.getElementById("startButton").addEventListener("click", function() {
+        if (window.innerWidth > 768) {
+            document.body.style.backgroundColor = "#f0f0f0";
+            document.getElementById("startScreen").style.backgroundColor = "#f0f0f0";
+            document.getElementById("startScreen").style.backgroundImage = "none";
+        }
+        
         document.getElementById("startScreen").style.display = "none";
         document.getElementById("board").style.display = "block";
         startGame();
     });
     
-    // Redimensionar al cambiar orientación
+    // Manejar redimensionamiento
     window.addEventListener("resize", function() {
         if (gameStarted && !gameOver) {
             initGame();
@@ -130,7 +200,7 @@ function startGame() {
         bird.y = birdY;
         
         requestAnimationFrame(update);
-        pipeInterval = setInterval(placePipes, 1000);
+        pipeInterval = setInterval(placePipes, 1250);
     }
 }
 
@@ -140,16 +210,18 @@ function update() {
     
     context.clearRect(0, 0, board.width, board.height);
     
-    // bird
+    // Actualizar posición del pájaro
     velocityY += gravity;
-    bird.y = Math.max(bird.y + velocityY, 0);
+    bird.y += velocityY;
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     
-    if (bird.y > board.height) {
-        gameOver = true;
+    // Verificar si el pájaro salió de la pantalla
+    if (bird.y > board.height || bird.y < 0) {
+        endGame();
+        return;
     }
     
-    // pipes
+    // Actualizar tubos
     for (let i = 0; i < pipeArray.length; i++) {
         let pipe = pipeArray[i];
         pipe.x += velocityX;
@@ -161,28 +233,20 @@ function update() {
         }
         
         if (detectCollision(bird, pipe)) {
-            gameOver = true;
+            endGame();
+            return;
         }
     }
     
+    // Eliminar tubos no visibles
     while (pipeArray.length > 0 && pipeArray[0].x < -pipeWidth) {
         pipeArray.shift();
     }
     
-    // Score
+    // Mostrar puntuación
     context.fillStyle = "white";
-    context.font = `${boardWidth * 0.125}px sans-serif`; // ~45px en 360px
-    context.fillText(Math.floor(score), boardWidth * 0.014, boardHeight * 0.07); // 5px, 45px
-    
-    if (gameOver) {
-        context.fillText("GAME OVER", boardWidth * 0.014, boardHeight * 0.14); // 5px, 90px
-        clearInterval(pipeInterval);
-        setTimeout(redirectToMainIndex, 1000);
-    }
-}
-
-function redirectToMainIndex() {
-    window.location.href = "index.html";
+    context.font = `${boardWidth * 0.125}px sans-serif`;
+    context.fillText(Math.floor(score), boardWidth * 0.014, boardHeight * 0.07);
 }
 
 function placePipes() {
@@ -199,7 +263,6 @@ function placePipes() {
         height: pipeHeight,
         passed: false
     };
-    pipeArray.push(topPipe);
     
     let bottomPipe = {
         img: bottomPipeImg,
@@ -209,26 +272,13 @@ function placePipes() {
         height: pipeHeight,
         passed: false
     };
-    pipeArray.push(bottomPipe);
-}
-
-function moveBird(e) {
-    if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyX") {
-        velocityY = -6;
-        
-        if (gameOver) {
-            redirectToMainIndex();
-        }
-    }
     
-    if (gameOver && (e.code === "Enter" || e.code === "KeyR")) {
-        redirectToMainIndex();
-    }
+    pipeArray.push(topPipe, bottomPipe);
 }
 
 function detectCollision(a, b) {
     return a.x < b.x + b.width &&
-        a.x + a.width > b.x &&
-        a.y < b.y + b.height &&
-        a.y + a.height > b.y;
+           a.x + a.width > b.x &&
+           a.y < b.y + b.height &&
+           a.y + a.height > b.y;
 }

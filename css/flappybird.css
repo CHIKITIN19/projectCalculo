@@ -7,13 +7,16 @@ body {
     height: 100vh;
     width: 100vw;
     touch-action: manipulation;
+    background-color: #70c5ce;
 }
 
 #startScreen {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #70c5ce;
+    background-image: url("../img/fondo.png");
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,14 +78,51 @@ body {
     display: none;
     background-image: url("../img/flappybirdbg.png");
     background-size: cover;
-    width: 100%;
-    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Control táctil para móviles */
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    #board {
+        width: 100%;
+        height: 100%;
+        transform: none;
+        top: 0;
+        left: 0;
+    }
+    
+    #welcomeCard {
+        height: 50vh;
+        width: 85%;
+    }
+}
+
+/* Estilos para PC */
+@media (min-width: 769px) {
+    #board {
+        width: 360px;
+        height: 640px;
+        min-width: 360px;
+        min-height: 640px;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+    
+    body.pc-mode {
+        background-color: #f0f0f0; /* Gris claro */
+        background-image: none;
+    }
+    
+    #startScreen.pc-mode {
+        background-image: url("../img/fondo.png");
+
+}
+
 #touchControl {
     display: none;
     position: fixed;
@@ -98,9 +138,70 @@ body {
     #touchControl {
         display: block;
     }
+}
+} 
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #f8f9fa;
+    margin: 15% auto;
+    padding: 25px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-content h2 {
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#mathExercisesBtn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#mathExercisesBtn:hover {
+    background-color: #218838;
+}
+
+/* Añadir esto al final del media query para PC */
+@media (min-width: 769px) {
+    #startScreen.pc-mode {
+        background-image: url("../img/fondo.png");
+    }
     
-    #welcomeCard {
-        height: 50vh;
-        width: 85%;
+    .modal-content {
+        margin: 10% auto;
     }
 }
